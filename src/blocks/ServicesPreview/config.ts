@@ -5,6 +5,20 @@ export const ServicesPreview: Block = {
   interfaceName: 'ServicesPreviewBlock',
   fields: [
     {
+      name: 'backgroundType',
+      type: 'select',
+      options: [
+        {
+          label: 'Colored',
+          value: 'colored',
+        },
+        {
+          label: 'White',
+          value: 'white',
+        },
+      ],
+    },
+    {
       name: 'heading',
       type: 'text',
       required: true,
@@ -14,7 +28,8 @@ export const ServicesPreview: Block = {
       name: 'subheading',
       type: 'textarea',
       required: true,
-      defaultValue: 'From custom bouquets to decorative pieces, we offer a variety of crochet flower services.',
+      defaultValue:
+        'From custom bouquets to decorative pieces, we offer a variety of crochet flower services.',
     },
     {
       name: 'services',
@@ -26,18 +41,18 @@ export const ServicesPreview: Block = {
         {
           title: 'Custom Bouquets',
           description: 'Handcrafted bouquets for weddings, anniversaries, or any special occasion.',
-          icon: 'Flower'
+          icon: 'Flower',
         },
         {
           title: 'Home Decor',
           description: 'Beautiful crochet flowers to brighten up your living space.',
-          icon: 'Home'
+          icon: 'Home',
         },
         {
           title: 'Workshops',
           description: 'Learn to crochet your own flowers with our beginner-friendly workshops.',
-          icon: 'BookOpen'
-        }
+          icon: 'BookOpen',
+        },
       ],
       fields: [
         {
@@ -56,8 +71,8 @@ export const ServicesPreview: Block = {
           required: true,
           defaultValue: 'Flower',
           admin: {
-            description: 'Icon name from Lucide Icons (e.g., Flower, Home, BookOpen)'
-          }
+            description: 'Icon name from Lucide Icons (e.g., Flower, Home, BookOpen)',
+          },
         },
       ],
     },

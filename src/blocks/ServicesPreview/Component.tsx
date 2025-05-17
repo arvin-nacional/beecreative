@@ -11,9 +11,13 @@ export const ServicesPreviewBlock: React.FC<ServicesPreviewBlockType> = ({
   services = [],
   buttonText,
   buttonLink,
+  backgroundType,
 }) => {
+  // Determine background class based on backgroundType
+  const backgroundClass = backgroundType === 'white' ? 'bg-white' : 'bg-[#fdf6f8]'
+
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-[#fdf6f8] dark:bg-gray-900">
+    <section className={`w-full py-12 md:py-24 lg:py-32 ${backgroundClass}`}>
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">

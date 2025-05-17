@@ -1,9 +1,24 @@
+import { linkGroup } from '@/fields/linkGroup'
 import type { Block } from 'payload'
 
 export const FeaturedProducts: Block = {
   slug: 'featuredProducts',
   interfaceName: 'FeaturedProductsBlock',
   fields: [
+    {
+      name: 'backgroundType',
+      type: 'select',
+      options: [
+        {
+          label: 'Colored',
+          value: 'colored',
+        },
+        {
+          label: 'White',
+          value: 'white',
+        },
+      ],
+    },
     {
       name: 'heading',
       type: 'text',
@@ -53,24 +68,14 @@ export const FeaturedProducts: Block = {
         },
       ],
     },
-    {
-      name: 'buttonText',
-      type: 'text',
-      required: false,
-      defaultValue: 'View All Creations',
-      admin: {
-        description: 'Text to display on the button',
+    linkGroup({
+      appearances: ['default', 'outline'],
+      overrides: {
+        maxRows: 1,
+        label: 'Button',
+        required: true,
       },
-    },
-    {
-      name: 'buttonLink',
-      type: 'text',
-      required: false,
-      defaultValue: '/gallery',
-      admin: {
-        description: 'URL the button links to',
-      },
-    },
+    }),
   ],
   labels: {
     singular: 'Featured Products Block',

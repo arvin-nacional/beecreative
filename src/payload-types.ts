@@ -748,6 +748,7 @@ export interface AboutCrochetBlock {
  * via the `definition` "ServicesPreviewBlock".
  */
 export interface ServicesPreviewBlock {
+  backgroundType?: ('colored' | 'white') | null;
   heading: string;
   subheading: string;
   services: {
@@ -770,6 +771,7 @@ export interface ServicesPreviewBlock {
  * via the `definition` "TestimonialsBlock".
  */
 export interface TestimonialsBlock {
+  backgroundType?: ('colored' | 'white') | null;
   heading: string;
   /**
    * Add testimonials from your customers.
@@ -796,6 +798,7 @@ export interface TestimonialsBlock {
  * via the `definition` "FeaturedProductsBlock".
  */
 export interface FeaturedProductsBlock {
+  backgroundType?: ('colored' | 'white') | null;
   heading: string;
   description: string;
   /**
@@ -818,14 +821,28 @@ export interface FeaturedProductsBlock {
         id?: string | null;
       }[]
     | null;
-  /**
-   * Text to display on the button
-   */
-  buttonText?: string | null;
-  /**
-   * URL the button links to
-   */
-  buttonLink?: string | null;
+  links: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
+    };
+    id?: string | null;
+  }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'featuredProducts';
@@ -1404,6 +1421,7 @@ export interface AboutCrochetBlockSelect<T extends boolean = true> {
  * via the `definition` "ServicesPreviewBlock_select".
  */
 export interface ServicesPreviewBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
   heading?: T;
   subheading?: T;
   services?:
@@ -1424,6 +1442,7 @@ export interface ServicesPreviewBlockSelect<T extends boolean = true> {
  * via the `definition` "TestimonialsBlock_select".
  */
 export interface TestimonialsBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
   heading?: T;
   testimonials?:
     | T
@@ -1440,6 +1459,7 @@ export interface TestimonialsBlockSelect<T extends boolean = true> {
  * via the `definition` "FeaturedProductsBlock_select".
  */
 export interface FeaturedProductsBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
   heading?: T;
   description?: T;
   products?:
@@ -1450,8 +1470,21 @@ export interface FeaturedProductsBlockSelect<T extends boolean = true> {
         image?: T;
         id?: T;
       };
-  buttonText?: T;
-  buttonLink?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -2045,6 +2078,13 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  description?: string | null;
+  address?: string | null;
+  phone?: string | null;
+  email?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  instagram?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -2090,6 +2130,13 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  description?: T;
+  address?: T;
+  phone?: T;
+  email?: T;
+  facebook?: T;
+  twitter?: T;
+  instagram?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

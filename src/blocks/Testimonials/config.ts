@@ -5,6 +5,20 @@ export const Testimonials: Block = {
   interfaceName: 'TestimonialsBlock',
   fields: [
     {
+      name: 'backgroundType',
+      type: 'select',
+      options: [
+        {
+          label: 'Colored',
+          value: 'colored',
+        },
+        {
+          label: 'White',
+          value: 'white',
+        },
+      ],
+    },
+    {
       name: 'heading',
       type: 'text',
       required: true,
@@ -17,7 +31,7 @@ export const Testimonials: Block = {
       minRows: 0,
       maxRows: 12,
       admin: {
-        description: 'Add testimonials from your customers.'
+        description: 'Add testimonials from your customers.',
       },
       fields: [
         {
@@ -25,19 +39,19 @@ export const Testimonials: Block = {
           type: 'textarea',
           required: true,
           admin: {
-            description: 'The testimonial quote from your customer'
-          }
+            description: 'The testimonial quote from your customer',
+          },
         },
         {
           name: 'author',
           type: 'text',
           required: true,
           admin: {
-            description: 'The name of the person who provided this testimonial'
-          }
-        }
-      ]
-    }
+            description: 'The name of the person who provided this testimonial',
+          },
+        },
+      ],
+    },
   ],
   labels: {
     singular: 'Testimonials Block',

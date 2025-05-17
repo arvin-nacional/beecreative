@@ -16,6 +16,7 @@ import { SiteHeaderBlock } from '@/blocks/SiteHeader/Component'
 import { ServicesBlock } from '@/blocks/Services/Component'
 import { HeroSectionBlock } from '@/blocks/HeroSection/Component'
 import { OrderingProcessBlock } from '@/blocks/OrderingProcess/Component'
+import { FAQBlock } from '@/blocks/FAQ/Component'
 
 const blockComponents = {
   aboutCrochet: AboutCrochetBlock,
@@ -32,6 +33,7 @@ const blockComponents = {
   servicesBlock: ServicesBlock,
   heroSection: HeroSectionBlock,
   orderingProcess: OrderingProcessBlock,
+  faq: FAQBlock,
 }
 
 export const RenderBlocks: React.FC<{

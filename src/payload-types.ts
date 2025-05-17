@@ -206,6 +206,7 @@ export interface Page {
     | ServicesBlock
     | HeroSectionBlock
     | OrderingProcessBlock
+    | FAQBlock
   )[];
   meta?: {
     title?: string | null;
@@ -968,6 +969,26 @@ export interface OrderingProcessBlock {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock".
+ */
+export interface FAQBlock {
+  /**
+   * Choose the background style for this section
+   */
+  backgroundType: 'colored' | 'white';
+  heading: string;
+  description: string;
+  questions: {
+    question: string;
+    answer: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1266,6 +1287,7 @@ export interface PagesSelect<T extends boolean = true> {
         servicesBlock?: T | ServicesBlockSelect<T>;
         heroSection?: T | HeroSectionBlockSelect<T>;
         orderingProcess?: T | OrderingProcessBlockSelect<T>;
+        faq?: T | FAQBlockSelect<T>;
       };
   meta?:
     | T
@@ -1530,6 +1552,24 @@ export interface OrderingProcessBlockSelect<T extends boolean = true> {
               label?: T;
               appearance?: T;
             };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQBlock_select".
+ */
+export interface FAQBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  description?: T;
+  questions?:
+    | T
+    | {
+        question?: T;
+        answer?: T;
         id?: T;
       };
   id?: T;

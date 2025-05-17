@@ -16,6 +16,8 @@ import { SiteHeader } from '../../blocks/SiteHeader/config'
 import { ServicesBlock } from '../../blocks/Services/config'
 import { HeroSection } from '../../blocks/HeroSection/config'
 import { OrderingProcess } from '../../blocks/OrderingProcess/config'
+import { FAQ } from '../../blocks/FAQ/config'
+
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -99,6 +101,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ServicesBlock,
                 HeroSection,
                 OrderingProcess,
+                FAQ,
               ],
               required: true,
               admin: {

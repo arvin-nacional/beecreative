@@ -7,6 +7,15 @@ import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
+import { AboutCrochet } from '../../blocks/AboutCrochet/config'
+import { ServicesPreview } from '../../blocks/ServicesPreview/config'
+import { Testimonials } from '../../blocks/Testimonials/config'
+import { FeaturedProducts } from '../../blocks/FeaturedProducts/config'
+import { ProductGrid } from '../../blocks/ProductGrid/config'
+import { SiteHeader } from '../../blocks/SiteHeader/config'
+import { ServicesBlock } from '../../blocks/Services/config'
+import { HeroSection } from '../../blocks/HeroSection/config'
+import { OrderingProcess } from '../../blocks/OrderingProcess/config'
 import { hero } from '@/heros/config'
 import { slugField } from '@/fields/slug'
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
@@ -75,7 +84,22 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+                AboutCrochet,
+                ServicesPreview,
+                Testimonials,
+                FeaturedProducts,
+                ProductGrid,
+                SiteHeader,
+                ServicesBlock,
+                HeroSection,
+                OrderingProcess,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,

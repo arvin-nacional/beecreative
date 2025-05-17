@@ -191,7 +191,22 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | AboutCrochetBlock
+    | ServicesPreviewBlock
+    | TestimonialsBlock
+    | FeaturedProductsBlock
+    | ProductGridBlock
+    | SiteHeaderBlock
+    | ServicesBlock
+    | HeroSectionBlock
+    | OrderingProcessBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -390,45 +405,34 @@ export interface User {
  * via the `definition` "CallToActionBlock".
  */
 export interface CallToActionBlock {
-  richText?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
+  /**
+   * Choose the background style for this call to action section
+   */
+  backgroundType: 'colored' | 'white';
+  heading: string;
+  description: string;
+  links: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
     };
-    [k: string]: unknown;
-  } | null;
-  links?:
-    | {
-        link: {
-          type?: ('reference' | 'custom') | null;
-          newTab?: boolean | null;
-          reference?:
-            | ({
-                relationTo: 'pages';
-                value: string | Page;
-              } | null)
-            | ({
-                relationTo: 'posts';
-                value: string | Post;
-              } | null);
-          url?: string | null;
-          label: string;
-          /**
-           * Choose how the link should be rendered.
-           */
-          appearance?: ('default' | 'outline') | null;
-        };
-        id?: string | null;
-      }[]
-    | null;
+    id?: string | null;
+  }[];
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
@@ -729,6 +733,241 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutCrochetBlock".
+ */
+export interface AboutCrochetBlock {
+  heading: string;
+  description: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutCrochet';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesPreviewBlock".
+ */
+export interface ServicesPreviewBlock {
+  heading: string;
+  subheading: string;
+  services: {
+    title: string;
+    description: string;
+    /**
+     * Icon name from Lucide Icons (e.g., Flower, Home, BookOpen)
+     */
+    icon: string;
+    id?: string | null;
+  }[];
+  buttonText: string;
+  buttonLink: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicesPreview';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock".
+ */
+export interface TestimonialsBlock {
+  heading: string;
+  /**
+   * Add testimonials from your customers.
+   */
+  testimonials?:
+    | {
+        /**
+         * The testimonial quote from your customer
+         */
+        quote: string;
+        /**
+         * The name of the person who provided this testimonial
+         */
+        author: string;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonials';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedProductsBlock".
+ */
+export interface FeaturedProductsBlock {
+  heading: string;
+  description: string;
+  /**
+   * Add featured products to showcase on the page.
+   */
+  products?:
+    | {
+        /**
+         * The name of the product
+         */
+        title: string;
+        /**
+         * A brief description of the product
+         */
+        description: string;
+        /**
+         * Upload the product image
+         */
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Text to display on the button
+   */
+  buttonText?: string | null;
+  /**
+   * URL the button links to
+   */
+  buttonLink?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'featuredProducts';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductGridBlock".
+ */
+export interface ProductGridBlock {
+  /**
+   * Add products to display in the grid. If none are provided, default examples will be shown.
+   */
+  products?:
+    | {
+        /**
+         * The name of the product
+         */
+        title: string;
+        /**
+         * A brief description of the product
+         */
+        description: string;
+        /**
+         * Upload the product image
+         */
+        image: string | Media;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'productGrid';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SiteHeaderBlock".
+ */
+export interface SiteHeaderBlock {
+  heading: string;
+  description: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'siteHeader';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock".
+ */
+export interface ServicesBlock {
+  services: {
+    title: string;
+    description: string;
+    /**
+     * Icon name from Lucide Icons (e.g., Flower, Home, BookOpen)
+     */
+    icon: 'Flower' | 'Home' | 'BookOpen' | 'Calendar' | 'Gift' | 'Package';
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicesBlock';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroSectionBlock".
+ */
+export interface HeroSectionBlock {
+  heading: string;
+  description: string;
+  image: string | Media;
+  links: {
+    link: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: string | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: string | Post;
+          } | null);
+      url?: string | null;
+      label: string;
+      /**
+       * Choose how the link should be rendered.
+       */
+      appearance?: ('default' | 'outline') | null;
+    };
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'heroSection';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OrderingProcessBlock".
+ */
+export interface OrderingProcessBlock {
+  /**
+   * Choose the background style for this section
+   */
+  backgroundType: 'colored' | 'white';
+  heading: string;
+  description: string;
+  steps: {
+    number: string;
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  links?:
+    | {
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: string | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: string | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'orderingProcess';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1018,6 +1257,15 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        aboutCrochet?: T | AboutCrochetBlockSelect<T>;
+        servicesPreview?: T | ServicesPreviewBlockSelect<T>;
+        testimonials?: T | TestimonialsBlockSelect<T>;
+        featuredProducts?: T | FeaturedProductsBlockSelect<T>;
+        productGrid?: T | ProductGridBlockSelect<T>;
+        siteHeader?: T | SiteHeaderBlockSelect<T>;
+        servicesBlock?: T | ServicesBlockSelect<T>;
+        heroSection?: T | HeroSectionBlockSelect<T>;
+        orderingProcess?: T | OrderingProcessBlockSelect<T>;
       };
   meta?:
     | T
@@ -1038,7 +1286,9 @@ export interface PagesSelect<T extends boolean = true> {
  * via the `definition` "CallToActionBlock_select".
  */
 export interface CallToActionBlockSelect<T extends boolean = true> {
-  richText?: T;
+  backgroundType?: T;
+  heading?: T;
+  description?: T;
   links?:
     | T
     | {
@@ -1114,6 +1364,174 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutCrochetBlock_select".
+ */
+export interface AboutCrochetBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesPreviewBlock_select".
+ */
+export interface ServicesPreviewBlockSelect<T extends boolean = true> {
+  heading?: T;
+  subheading?: T;
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  buttonText?: T;
+  buttonLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TestimonialsBlock_select".
+ */
+export interface TestimonialsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  testimonials?:
+    | T
+    | {
+        quote?: T;
+        author?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FeaturedProductsBlock_select".
+ */
+export interface FeaturedProductsBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  products?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  buttonText?: T;
+  buttonLink?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ProductGridBlock_select".
+ */
+export interface ProductGridBlockSelect<T extends boolean = true> {
+  products?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "SiteHeaderBlock_select".
+ */
+export interface SiteHeaderBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesBlock_select".
+ */
+export interface ServicesBlockSelect<T extends boolean = true> {
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        icon?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "HeroSectionBlock_select".
+ */
+export interface HeroSectionBlockSelect<T extends boolean = true> {
+  heading?: T;
+  description?: T;
+  image?: T;
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "OrderingProcessBlock_select".
+ */
+export interface OrderingProcessBlockSelect<T extends boolean = true> {
+  backgroundType?: T;
+  heading?: T;
+  description?: T;
+  steps?:
+    | T
+    | {
+        number?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  links?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

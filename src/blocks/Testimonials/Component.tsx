@@ -24,7 +24,9 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockType> = ({
               key={`testimonial-${index}`}
               className="flex flex-col gap-2 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-sm"
             >
-              <p className="text-gray-600 dark:text-gray-300 italic">"{testimonial.quote}"</p>
+              <p className="text-gray-600 dark:text-gray-300 italic">
+                &quot;{testimonial.quote}&quot;
+              </p>
               <p className="font-semibold text-rose-600 dark:text-rose-400">
                 - {testimonial.author}
               </p>

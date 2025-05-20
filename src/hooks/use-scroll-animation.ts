@@ -53,7 +53,7 @@ export const useScrollAnimation = (options: ScrollAnimationOptions = {}) => {
   const getAnimationStyles = () => {
     if (!isVisible) {
       let transform = ''
-      let opacity = 0
+      const opacity = 0
       
       switch (direction) {
         case 'up':

@@ -31,12 +31,12 @@ export function ServiceCard({ title, description, icon, extended = false }: Serv
   }
 
   return (
-    <Card className={`${extended ? 'h-full' : ''}`}>
+    <Card className={`${extended ? 'h-full' : ''} group transition-all duration-300 hover:shadow-md hover:-translate-y-1`}>
       <CardHeader className="flex flex-row items-center gap-4 pb-2">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-900/30">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-rose-100 dark:bg-rose-900/30 transition-all duration-300 group-hover:bg-rose-200 dark:group-hover:bg-rose-800/40">
           {renderIcon(icon)}
         </div>
-        <CardTitle className="text-xl">{title}</CardTitle>
+        <CardTitle className="text-xl transition-colors duration-300 group-hover:text-rose-600 dark:group-hover:text-rose-400">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-gray-600 dark:text-gray-300">{description}</p>

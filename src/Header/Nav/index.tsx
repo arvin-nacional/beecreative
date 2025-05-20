@@ -36,7 +36,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
                   <CMSLink 
                     {...link} 
                     appearance="link" 
-                    className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400" 
+                    className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 transition-all duration-300 hover:translate-x-1" 
                   />
                 </div>
               ))}
@@ -50,7 +50,7 @@ export const HeaderNav: React.FC<{ data: HeaderType }> = ({ data }) => {
               key={i} 
               {...link} 
               appearance="link" 
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400" 
+              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-rose-600 dark:hover:text-rose-400 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-rose-600 dark:after:bg-rose-400 after:transition-all after:duration-300 hover:after:w-full" 
             />
           ))}
         </nav>

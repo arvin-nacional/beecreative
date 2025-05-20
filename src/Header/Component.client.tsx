@@ -34,8 +34,8 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
       {...(theme ? { 'data-theme': theme } : {})}
     >
       <div className="container flex h-16 items-center justify-between px-4 md:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="text-lg font-semibold text-rose-800 dark:text-rose-600">
+        <Link href="/" className="flex items-center gap-2 group transition-transform duration-300 hover:scale-105">
+          <span className="text-lg font-semibold text-rose-800 dark:text-rose-600 group-hover:text-rose-600 dark:group-hover:text-rose-500 transition-colors duration-300">
             Beecreative
           </span>
         </Link>
